@@ -31,6 +31,8 @@ const basic = [
   },
   {
     path: '/error',
+    name: 'error',
+
     meta: {
       title: '访问异常'
     },
@@ -41,10 +43,19 @@ const basic = [
 const sys = [
   {
     path: '/sys',
+    name: 'sys',
     meta: {
       title: '系统管理'
     },
     component: resolve => require(['../views/Sys/Index.vue'], resolve)
+  },
+  {
+    path: '/sys/user',
+    name: 'sys.user',
+    meta: {
+      title: '用户管理'
+    },
+    component: resolve => require(['../views/Sys/User.vue'], resolve)
   }
 ];
 const routers = lodash.concat(basic, sys);

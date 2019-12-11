@@ -44,13 +44,13 @@
           ></Icon>
           <Breadcrumb class="breadcrumb">
             <BreadcrumbItem to="/">
-              <Icon type="ios-home-outline"></Icon> Home
+              <Icon type="ios-home-outline"></Icon> 首页
             </BreadcrumbItem>
-            <BreadcrumbItem to="/components/breadcrumb">
-              <Icon type="logo-buffer"></Icon> Components
+            <BreadcrumbItem to="/sys">
+              <Icon type="md-settings"></Icon> 系统管理
             </BreadcrumbItem>
             <BreadcrumbItem>
-              <Icon type="ios-cafe"></Icon> Breadcrumb
+              <Icon type="ios-people"></Icon> 用户管理
             </BreadcrumbItem>
           </Breadcrumb>
         </Header>
