@@ -1,5 +1,8 @@
 <template>
-  <div class="welcome">WELCOME</div>
+  <div class="welcome">
+    <p>WELCOME</p>
+    <p class="account">Admin</p>
+  </div>
 </template>
 
 <script>
@@ -8,13 +11,16 @@ export default {
   props: {
     msg: String
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="less">
 .welcome {
   text-align: center;
   font-size: 24px;
+  .account {
+    color: #ccc;
+  }
 }
 </style>
