@@ -16,7 +16,9 @@
           active-name="1-2"
           theme="dark"
           width="auto"
+          accordion
           :class="['menu-item', isCollapsed ? 'collapsed-menu' : '']"
+          @on-select="menuSelect"
         >
           <MenuItem name="1-1">
             <Icon type="ios-navigate"></Icon>
@@ -26,9 +28,27 @@
             <Icon type="ios-search"></Icon>
             <span>Option 2</span>
           </MenuItem>
-          <MenuItem name="1-3">
-            <Icon type="ios-settings"></Icon>
-            <span>Option 3</span>
+          <Submenu name="1-3">
+            <template slot="title">
+              <Icon type="ios-settings"></Icon>
+              Option 3
+            </template>
+            <MenuItem name="1-3-1">Item 1</MenuItem>
+            <MenuItem name="1-3-2">Item 2</MenuItem>
+            <MenuItem name="1-3-3">Item 3</MenuItem>
+          </Submenu>
+          <Submenu name="1-4">
+            <template slot="title">
+              <Icon type="ios-people"></Icon>
+              Option 4
+            </template>
+            <MenuItem name="1-4-1">Item 1</MenuItem>
+            <MenuItem name="1-4-2">Item 2</MenuItem>
+            <MenuItem name="1-4-3">Item 3</MenuItem>
+          </Submenu>
+          <MenuItem name="1-5">
+            <Icon type="ios-person"></Icon>
+            <span>Option 5</span>
           </MenuItem>
         </Menu>
       </Sider>
@@ -87,6 +107,9 @@ export default {
   methods: {
     collapsedSider() {
       this.$refs['menuSider'].toggleCollapse();
+    },
+    menuSelect(name) {
+      console.log(name, '---');
     }
   }
 };
