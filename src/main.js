@@ -28,15 +28,20 @@ router.afterEach(to => {
 });
 
 /* ********************** View Design UI ********************** */
-
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 import './theme/index.less'; // 加入个性化主题
 Vue.use(ViewUI);
 
+/* ********************** Vuex ********************** */
+import Vuex from 'vuex';
+Vue.use(Vuex);
+import store from './store/index';
+
 Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app');

@@ -6,7 +6,6 @@
     <div class="layout" v-if="!isLoginPage">
       <router-view></router-view>
     </div>
-
   </div>
 </template>
 
@@ -22,6 +21,11 @@ export default {
     isLoginPage() {
       return this.$route.name == 'login';
     }
+  },
+  mounted() {
+    this.$store.commit('account', 'HB_WANGZHENG');
+    const store = this.$store.getters;
+    console.log(store, '---');
   }
 };
 </script>
