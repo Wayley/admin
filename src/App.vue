@@ -42,6 +42,17 @@
             type="md-menu"
             size="24"
           ></Icon>
+          <Breadcrumb class="breadcrumb">
+            <BreadcrumbItem to="/">
+              <Icon type="ios-home-outline"></Icon> Home
+            </BreadcrumbItem>
+            <BreadcrumbItem to="/components/breadcrumb">
+              <Icon type="logo-buffer"></Icon> Components
+            </BreadcrumbItem>
+            <BreadcrumbItem>
+              <Icon type="ios-cafe"></Icon> Breadcrumb
+            </BreadcrumbItem>
+          </Breadcrumb>
         </Header>
         <Content
           :style="{ margin: '20px', background: '#fff', minHeight: '260px' }"
@@ -79,8 +90,7 @@ export default {
   }
 };
 </script>
-<style></style>
-<style scoped>
+<style scoped lang="less">
 .layout {
   height: 100%;
   background: #f5f7f9;
@@ -134,5 +144,8 @@ export default {
 .collapse-icon {
   margin: 0 20px;
   cursor: pointer;
+}
+.breadcrumb {
+  display: inline-block;
 }
 </style>
