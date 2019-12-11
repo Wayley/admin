@@ -27,6 +27,13 @@ router.afterEach(to => {
   }
 });
 
+/* ********************** View Design UI ********************** */
+
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
+import './theme/index.less'; // 加入个性化主题
+Vue.use(ViewUI);
+
 Vue.config.productionTip = false;
 
 new Vue({
