@@ -29,7 +29,8 @@ export default {
     this.$cookie.set('account', 'HB_WANGZHENG_Cookie', 1);
     const account = this.$cookie.get('account');
 
-    console.log(store, '---', account);
+    const $lodash = this.$lodash;
+    console.log(store, '---', account, $lodash);
   }
 };
 </script>

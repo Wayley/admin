@@ -42,6 +42,10 @@ import store from './store/index';
 var VueCookie = require('vue-cookie');
 Vue.use(VueCookie);
 
+/* ********************** Lodash Tools ********************** */
+import Lodash from './lib/methods';
+Vue.use(Lodash);
+
 Vue.config.productionTip = false;
 
 new Vue({
