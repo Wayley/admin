@@ -1,18 +1,29 @@
 <template>
   <div id="app">
-    <Welcome></Welcome>
+    <div class="login" v-if="isLoginPage">
+      <router-view name="login"></router-view>
+    </div>
+    <div class="layout" v-if="!isLoginPage">
+      <router-view></router-view>
+    </div>
+
   </div>
 </template>
 
 <script>
-import Welcome from './components/Welcome.vue'
+import Welcome from './components/Welcome.vue';
 
 export default {
   name: 'app',
   components: {
     Welcome
+  },
+  computed: {
+    isLoginPage() {
+      return this.$route.name == 'login';
+    }
   }
-}
+};
 </script>
 
 <style>
