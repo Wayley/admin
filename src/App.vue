@@ -11,6 +11,7 @@
         :collapsed-width="78"
         v-model="isCollapsed"
       >
+        <div class="layout-logo">LOGO</div>
         <Menu
           active-name="1-2"
           theme="dark"
@@ -97,6 +98,14 @@ export default {
   position: relative;
   border-radius: 4px;
   overflow: hidden;
+}
+.layout-logo {
+  width: 100%;
+  height: 64px;
+  line-height: 64px;
+  background: #ccc;
+  text-align: center;
+  color: #000;
 }
 .layout-header-bar {
   background: #fff;
