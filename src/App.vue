@@ -18,6 +18,7 @@
           width="auto"
           accordion
           :class="['menu-item', isCollapsed ? 'collapsed-menu' : '']"
+          :open-names="[]"
           @on-select="menuSelect"
         >
           <MenuItem name="1-1">
