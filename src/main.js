@@ -38,6 +38,10 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 import store from './store/index';
 
+/* ********************** Vue Cookie ********************** */
+var VueCookie = require('vue-cookie');
+Vue.use(VueCookie);
+
 Vue.config.productionTip = false;
 
 new Vue({

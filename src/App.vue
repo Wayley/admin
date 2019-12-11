@@ -25,7 +25,11 @@ export default {
   mounted() {
     this.$store.commit('account', 'HB_WANGZHENG');
     const store = this.$store.getters;
-    console.log(store, '---');
+
+    this.$cookie.set('account', 'HB_WANGZHENG_Cookie', 1);
+    const account = this.$cookie.get('account');
+
+    console.log(store, '---', account);
   }
 };
 </script>
