@@ -17,7 +17,7 @@
           :theme="theme"
           width="auto"
           accordion
-          :class="['menu-item', isCollapsed ? 'collapsed-menu' : '']"
+          :class="['menu-list', isCollapsed ? 'collapsed-menu' : '']"
           :open-names="[]"
           @on-select="menuSelect"
         >
@@ -28,15 +28,15 @@
               :key="item.path"
             >
               <template slot="title">
-                <Icon :type="item.icon || defaultMenuIcon"></Icon
-                >{{ item.name }}
+                <Icon :type="item.icon || defaultMenuIcon"></Icon>
+                <span class="menu-name">{{ item.name }}</span>
               </template>
               <MenuItem
                 v-for="_item in item.children"
                 :name="_item.path"
                 :key="_item.path"
               >
-                {{ _item.name }}
+                <span class="menu-name">{{ _item.name }}</span>
               </MenuItem>
             </Submenu>
             <!--  -->
@@ -45,7 +45,7 @@
                 :type="item.icon || defaultMenuIcon"
                 style="margin-right:8px"
               ></Icon>
-              {{ item.name }}
+              <span class="menu-name">{{ _item.name }}</span>
             </MenuItem>
           </template>
         </Menu>
@@ -55,7 +55,7 @@
           <Icon
             @click.native="collapsedSider"
             :class="[
-              'menu-icon collapse-icon',
+              'header-menu-icon collapse-icon',
               isCollapsed ? 'rotate-icon' : ''
             ]"
             type="md-menu"
@@ -134,6 +134,7 @@ export default {
   border-radius: 4px;
   overflow: hidden;
 }
+/************ LOGO ************/
 .layout-logo {
   width: 100%;
   height: 64px;
@@ -142,40 +143,23 @@ export default {
   text-align: center;
   color: #000;
 }
-.layout-header-bar {
-  background: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  padding: 0;
-}
-.layout-logo-left {
-  width: 90%;
-  height: 30px;
-  background: #5b6270;
-  border-radius: 3px;
-  margin: 15px auto;
-}
-.menu-icon {
-  transition: all 0.3s;
-}
-.rotate-icon {
-  transform: rotate(-90deg);
-}
-.menu-item span {
+/************ MENU ************/
+.menu-list .menu-name {
   display: inline-block;
   overflow: hidden;
-  width: 69px;
+  width: 90px;
   text-overflow: ellipsis;
   white-space: nowrap;
   vertical-align: bottom;
   transition: width 0.2s ease 0.2s;
 }
-.menu-item i {
+.menu-list i {
   transform: translateX(0px);
   transition: font-size 0.2s ease, transform 0.2s ease;
   vertical-align: middle;
   font-size: 16px;
 }
-.collapsed-menu span {
+.collapsed-menu .menu-name {
   width: 0px;
   transition: width 0.2s ease;
 }
@@ -189,6 +173,19 @@ export default {
   margin: 0 20px;
   cursor: pointer;
 }
+/************ HEADER-BAR ************/
+.layout-header-bar {
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  .header-menu-icon {
+    transition: all 0.3s;
+  }
+  .rotate-icon {
+    transform: rotate(-90deg);
+  }
+}
+/************ BREADCRUMB ************/
 .breadcrumb {
   display: inline-block;
 }
