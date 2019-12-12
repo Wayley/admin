@@ -121,7 +121,9 @@ export default {
     },
     menuSelect(name) {
       console.log(name, '---');
-      this.$router.push({ name });
+      if (name != this.routerName) {
+        this.$router.push({ name });
+      }
     }
   }
 };
