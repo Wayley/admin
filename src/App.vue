@@ -13,44 +13,28 @@
       >
         <div class="layout-logo">LOGO</div>
         <Menu
-          active-name="1-2"
-          theme="dark"
+          :active-name="routerName"
+          :theme="theme"
           width="auto"
           accordion
           :class="['menu-item', isCollapsed ? 'collapsed-menu' : '']"
           :open-names="[]"
           @on-select="menuSelect"
         >
-          <MenuItem name="1-1">
-            <Icon type="ios-navigate"></Icon>
-            <span>Option 1</span>
-          </MenuItem>
-          <MenuItem name="1-2">
-            <Icon type="ios-search"></Icon>
-            <span>Option 2</span>
-          </MenuItem>
-          <Submenu name="1-3">
+          <Submenu v-for="item in menu" :name="item.path" :key="item.path">
             <template slot="title">
-              <Icon type="ios-settings"></Icon>
-              Option 3
+              <Icon :type="item.icon || 'ios-settings'"></Icon>
+              {{ item.name }}
             </template>
-            <MenuItem name="1-3-1">Item 1</MenuItem>
-            <MenuItem name="1-3-2">Item 2</MenuItem>
-            <MenuItem name="1-3-3">Item 3</MenuItem>
-          </Submenu>
-          <Submenu name="1-4">
-            <template slot="title">
-              <Icon type="ios-people"></Icon>
-              Option 4
+            <template v-if="item.children && item.children.length > 0">
+              <MenuItem
+                v-for="_item in item.children"
+                :name="_item.path"
+                :key="_item.path"
+                >{{ _item.name }}</MenuItem
+              >
             </template>
-            <MenuItem name="1-4-1">Item 1</MenuItem>
-            <MenuItem name="1-4-2">Item 2</MenuItem>
-            <MenuItem name="1-4-3">Item 3</MenuItem>
           </Submenu>
-          <MenuItem name="1-5">
-            <Icon type="ios-person"></Icon>
-            <span>Option 5</span>
-          </MenuItem>
         </Menu>
       </Sider>
       <Layout>
@@ -89,6 +73,9 @@
 <script>
 import Welcome from './components/Welcome.vue';
 import './theme/app.less';
+
+import menu from './mock/menu';
+
 export default {
   name: 'app',
   components: {
@@ -96,21 +83,31 @@ export default {
   },
   data() {
     return {
-      isCollapsed: false
+      isCollapsed: false,
+      menu: [],
+      theme: 'dark' // 菜单主题，可选值为 light、dark、primary，其中 primary 只适用于 mode="horizontal"
     };
   },
   computed: {
     isLoginPage() {
       return this.$route.name == 'login';
+    },
+    routerName() {
+      return this.$route.name;
     }
   },
-  mounted() {},
+  mounted() {
+    setTimeout(() => {
+      this.menu = menu;
+    }, 800);
+  },
   methods: {
     collapsedSider() {
       this.$refs['menuSider'].toggleCollapse();
     },
     menuSelect(name) {
       console.log(name, '---');
+      this.$router.push({ name });
     }
   }
 };
