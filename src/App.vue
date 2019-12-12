@@ -21,20 +21,33 @@
           :open-names="[]"
           @on-select="menuSelect"
         >
-          <Submenu v-for="item in menu" :name="item.path" :key="item.path">
-            <template slot="title">
-              <Icon :type="item.icon || 'ios-settings'"></Icon>
-              {{ item.name }}
-            </template>
-            <template v-if="item.children && item.children.length > 0">
+          <template v-for="item in menu">
+            <Submenu
+              v-if="item.children && item.children.length > 0"
+              :name="item.path"
+              :key="item.path"
+            >
+              <template slot="title">
+                <Icon :type="item.icon || defaultMenuIcon"></Icon
+                >{{ item.name }}
+              </template>
               <MenuItem
                 v-for="_item in item.children"
                 :name="_item.path"
                 :key="_item.path"
-                >{{ _item.name }}</MenuItem
               >
-            </template>
-          </Submenu>
+                {{ _item.name }}
+              </MenuItem>
+            </Submenu>
+            <!--  -->
+            <MenuItem v-else :name="item.path" :key="item.path">
+              <Icon
+                :type="item.icon || defaultMenuIcon"
+                style="margin-right:8px"
+              ></Icon>
+              {{ item.name }}
+            </MenuItem>
+          </template>
         </Menu>
       </Sider>
       <Layout>
@@ -85,7 +98,8 @@ export default {
     return {
       isCollapsed: false,
       menu: [],
-      theme: 'dark' // 菜单主题，可选值为 light、dark、primary，其中 primary 只适用于 mode="horizontal"
+      theme: 'dark', // 菜单主题，可选值为 light、dark、primary，其中 primary 只适用于 mode="horizontal",
+      defaultMenuIcon: 'ios-apps'
     };
   },
   computed: {
