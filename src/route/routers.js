@@ -44,6 +44,7 @@ const OPERATION = [
   {
     path: '/operation',
     name: 'operation',
+    redirect: '/operation/order', // 添加redirect
     meta: {
       title: '运营管理'
     },
@@ -104,6 +105,7 @@ const STAT = [
   {
     path: '/stat',
     name: 'stat',
+    redirect: '/stat/order',
     meta: {
       title: '统计管理'
     },
@@ -124,6 +126,7 @@ const SYS = [
   {
     path: '/sys',
     name: 'sys',
+    redirect: '/sys/user',
     meta: {
       title: '系统管理'
     },
