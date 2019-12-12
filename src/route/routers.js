@@ -38,6 +38,87 @@ const BASIC = [
     component: resolve => require(['../views/Basic/Error.vue'], resolve)
   }
 ];
+
+// 运营管理
+const OPERATION = [
+  {
+    path: '/operation',
+    name: 'operation',
+    meta: {
+      title: '运营管理'
+    },
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
+  },
+  {
+    path: '/operation/order',
+    name: 'operation.order',
+    meta: {
+      title: '订单管理'
+    },
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
+  },
+  {
+    path: '/operation/feedback',
+    name: 'operation.feedback',
+    meta: {
+      title: '用户反馈管理'
+    },
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
+  },
+  {
+    path: '/operation/member',
+    name: 'operation.member',
+    meta: {
+      title: '成员管理'
+    },
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
+  },
+  {
+    path: '/operation/member/driver',
+    name: 'operation.member.driver',
+    meta: {
+      title: '司机管理'
+    },
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
+  },
+  {
+    path: '/operation/member/passenger',
+    name: 'operation.member.passenger',
+    meta: {
+      title: '乘客管理'
+    },
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
+  },
+  {
+    path: '/operation/member/investor',
+    name: 'operation.member.investor',
+    meta: {
+      title: '投资方管理'
+    },
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
+  }
+];
+
+// 统计管理
+const STAT = [
+  {
+    path: '/stat',
+    name: 'stat',
+    meta: {
+      title: '统计管理'
+    },
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
+  },
+  {
+    path: '/stat/order',
+    name: 'stat.order',
+    meta: {
+      title: '订单统计'
+    },
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
+  }
+];
+
 // 系统管理
 const SYS = [
   {
@@ -66,5 +147,5 @@ const SYS = [
   }
 ];
 
-const routers = lodash.concat(BASIC, SYS);
+const routers = lodash.concat(BASIC, OPERATION, STAT, SYS);
 export default routers;
