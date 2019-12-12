@@ -88,7 +88,7 @@ import Welcome from './components/Welcome.vue';
 import './theme/app.less';
 
 import menu from './mock/menu';
-
+import Routers from './route/routers';
 export default {
   name: 'app',
   components: {
@@ -113,11 +113,20 @@ export default {
   mounted() {
     setTimeout(() => {
       this.menu = menu;
+      this.test();
     }, 800);
   },
   methods: {
     collapsedSider() {
       this.$refs['menuSider'].toggleCollapse();
+    },
+    test() {
+      let result = this.$lodash.getTreeParents(
+        this.menu,
+        'operation.member.driver',
+        'path'
+      );
+      console.log('operation.member.driver', result);
     },
     menuSelect(name) {
       console.log(name, '---');
