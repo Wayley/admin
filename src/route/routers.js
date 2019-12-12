@@ -1,7 +1,7 @@
 import lodash from '../lib/methods';
 
-// basic
-const basic = [
+// BASIC
+const BASIC = [
   {
     path: '/',
     name: 'home',
@@ -10,7 +10,6 @@ const basic = [
     },
     component: resolve => require(['../views/Index.vue'], resolve)
   },
-
   {
     path: '/login',
     name: 'login',
@@ -40,14 +39,14 @@ const basic = [
   }
 ];
 // 系统管理
-const sys = [
+const SYS = [
   {
     path: '/sys',
     name: 'sys',
     meta: {
       title: '系统管理'
     },
-    component: resolve => require(['../views/Sys/Index.vue'], resolve)
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
   },
   {
     path: '/sys/user',
@@ -55,8 +54,17 @@ const sys = [
     meta: {
       title: '用户管理'
     },
-    component: resolve => require(['../views/Sys/User.vue'], resolve)
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
+  },
+  {
+    path: '/sys/role',
+    name: 'sys.role',
+    meta: {
+      title: '角色管理'
+    },
+    component: resolve => require(['../views/Template/Index.vue'], resolve)
   }
 ];
-const routers = lodash.concat(basic, sys);
+
+const routers = lodash.concat(BASIC, SYS);
 export default routers;

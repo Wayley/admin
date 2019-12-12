@@ -5,3 +5,5 @@ Mock.setup({
   // timeout: '800',
   timeout: '500-2000'
 });
+
+export default Mock;
