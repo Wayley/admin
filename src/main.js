@@ -46,10 +46,14 @@ Vue.use(VueCookie);
 import Lodash from './lib/methods';
 Vue.use(Lodash);
 
+/* ********************** Vue I18n ********************** */
+import i18n from './locale';
+
 Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app');
