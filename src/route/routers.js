@@ -150,5 +150,12 @@ const SYS = [
   }
 ];
 
-const routers = lodash.concat(BASIC, OPERATION, STAT, SYS);
+// NOTFONUD
+const NOTFONUD = [
+  {
+    path: '*',
+    redirect: { name: 'home' }
+  }
+];
+const routers = lodash.concat(BASIC, OPERATION, STAT, SYS, NOTFONUD);
 export default routers;
