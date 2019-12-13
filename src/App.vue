@@ -63,13 +63,14 @@
           ></Icon>
           <Breadcrumb class="breadcrumb">
             <BreadcrumbItem to="/">
-              <Icon type="ios-home-outline"></Icon> 首页
+              <Icon type="ios-home"></Icon> 首页
             </BreadcrumbItem>
-            <BreadcrumbItem to="/sys">
-              <Icon type="md-settings"></Icon> 系统管理
-            </BreadcrumbItem>
-            <BreadcrumbItem>
-              <Icon type="ios-people"></Icon> 用户管理
+            <BreadcrumbItem
+              v-for="crumb in crumbList"
+              :key="crumb.to"
+              :to="crumb.to"
+            >
+              <Icon :type="crumb.icon"></Icon>{{ crumb.name }}
             </BreadcrumbItem>
           </Breadcrumb>
         </Header>
@@ -108,28 +109,23 @@ export default {
     },
     routerName() {
       return this.$route.name;
+    },
+    crumbList() {
+      return this.$lodash.getCrumbList(this.routerName, this.menu, Routers);
     }
   },
   mounted() {
     setTimeout(() => {
       this.menu = menu;
-      this.test();
     }, 800);
   },
+  watch: {},
   methods: {
     collapsedSider() {
       this.$refs['menuSider'].toggleCollapse();
     },
-    test() {
-      let result = this.$lodash.getTreeParents(
-        this.menu,
-        'operation.member.driver',
-        'path'
-      );
-      console.log('operation.member.driver', result);
-    },
+
     menuSelect(name) {
-      console.log(name, '---');
       if (name != this.routerName) {
         this.$router.push({ name });
       }
