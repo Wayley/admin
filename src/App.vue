@@ -36,6 +36,10 @@
                 :name="_item.path"
                 :key="_item.path"
               >
+                <Icon
+                  :type="_item.icon || defaultMenuIcon"
+                  style="margin-right:8px"
+                ></Icon>
                 <span class="menu-name">{{ _item.name }}</span>
               </MenuItem>
             </Submenu>
@@ -45,7 +49,7 @@
                 :type="item.icon || defaultMenuIcon"
                 style="margin-right:8px"
               ></Icon>
-              <span class="menu-name">{{ _item.name }}</span>
+              <span class="menu-name">{{ item.name }}</span>
             </MenuItem>
           </template>
         </Menu>

@@ -17,7 +17,7 @@ const menu = [
         id: 12,
         name: '用户反馈管理',
         path: 'operation.feedback',
-        icon: 'ios-feedback',
+        icon: 'ios-at',
         pid: 1,
         children: []
       },
