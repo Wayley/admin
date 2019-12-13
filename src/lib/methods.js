@@ -24,6 +24,48 @@ let methods = {
         }
       }
     }
+  },
+  /**
+   * [filterValue 获取keyArray包含属性的对象]
+   * @param  {[String]} routerName [路由名称]
+   * @param  {[Array]} menu [菜单列表]
+   * @param  {[Array]} routers  [路由配置列表]
+   * @return {[Array]}          [路由面包屑]
+   */
+  getCrumbList(routerName, menu, routers) {
+    let parents = this.getTreeParents(menu, routerName, 'path'); // 默认使用path
+    const crumbList = lodash
+      .map(parents, item => {
+        const { name, id, icon, path } = item;
+        const f = lodash.find(routers, o => {
+          return o.name == path;
+        });
+        const to = f && f.path ? f.path : null;
+        return {
+          name,
+          id,
+          icon,
+          to
+        };
+      })
+      .reverse();
+    return crumbList;
+  },
+
+  /**
+   * [filterValue 获取keyArray包含属性的对象]
+   * @param  {[Object]} objData [原对象]
+   * @param  {[Array]} keyArray  [所需属性]
+   * @return {[Object]}          [新对象]
+   */
+  filterValue(objData, keyArray) {
+    let obj = {};
+    lodash.forEach(objData, (value, key) => {
+      if (lodash.indexOf(keyArray, key) > -1) {
+        obj[key] = value;
+      }
+    });
+    return obj;
   }
 };
 
