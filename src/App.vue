@@ -79,9 +79,7 @@
             </BreadcrumbItem>
           </Breadcrumb>
         </Header>
-        <Content
-          :style="{ margin: '20px', background: '#fff', minHeight: '260px' }"
-        >
+        <Content class="layout-main">
           <router-view></router-view>
         </Content>
       </Layout>
@@ -200,6 +198,12 @@ export default {
 /************ BREADCRUMB ************/
 .breadcrumb {
   display: inline-block;
+}
+/************ LAYOUT-MAIN ************/
+.layout-main {
+  margin: 20px;
+  background: #fff;
+  min-height: 260px;
 }
 </style>
 

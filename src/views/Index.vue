@@ -14,6 +14,8 @@ export default {
 <style lang="less" scoped>
 .home {
   text-align: center;
+  font-size: 24px;
+  margin-top: 45px;
   .home-info {
     height: 45px;
     margin: 0 auto;
