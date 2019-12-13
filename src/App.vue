@@ -26,6 +26,7 @@
               v-if="item.children && item.children.length > 0"
               :name="item.path"
               :key="item.path"
+              class="sub-mneu"
             >
               <template slot="title">
                 <Icon :type="item.icon || defaultMenuIcon"></Icon>
@@ -199,5 +200,15 @@ export default {
 /************ BREADCRUMB ************/
 .breadcrumb {
   display: inline-block;
+}
+</style>
+
+<style>
+/* **************************** Collapsed Menu **************************** */
+.collapsed-menu .sub-mneu .ivu-menu {
+  display: none;
+}
+.collapsed-menu .sub-mneu .ivu-menu-submenu-title-icon {
+  display: none;
 }
 </style>
