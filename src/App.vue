@@ -8,78 +8,21 @@
         ref="menuSider"
         hide-trigger
         collapsible
-        :collapsed-width="78"
+        :width="menuWidth"
+        :collapsed-width="menuCollapsedWidth"
         v-model="isCollapsed"
       >
-        <div class="layout-logo">LOGO</div>
-        <Menu
-          :active-name="routerName"
-          :theme="theme"
-          width="auto"
-          accordion
-          :class="['menu-list', isCollapsed ? 'collapsed-menu' : '']"
-          :open-names="[]"
-          @on-select="menuSelect"
-        >
-          <template v-for="item in menu">
-            <Submenu
-              v-if="item.children && item.children.length > 0"
-              :name="item.path"
-              :key="item.path"
-              class="sub-mneu"
-            >
-              <template slot="title">
-                <Icon :type="item.icon || defaultMenuIcon"></Icon>
-                <span class="menu-name">{{ item.name }}</span>
-              </template>
-              <MenuItem
-                v-for="_item in item.children"
-                :name="_item.path"
-                :key="_item.path"
-              >
-                <Icon
-                  :type="_item.icon || defaultMenuIcon"
-                  style="margin-right:8px"
-                ></Icon>
-                <span class="menu-name">{{ _item.name }}</span>
-              </MenuItem>
-            </Submenu>
-            <!--  -->
-            <MenuItem v-else :name="item.path" :key="item.path">
-              <Icon
-                :type="item.icon || defaultMenuIcon"
-                style="margin-right:8px"
-              ></Icon>
-              <span class="menu-name">{{ item.name }}</span>
-            </MenuItem>
-          </template>
-        </Menu>
+        <Logo :height="headerHeight"></Logo>
       </Sider>
       <Layout>
         <Header class="layout-header-bar">
-          <Icon
-            @click.native="collapsedSider"
-            :class="[
-              'header-menu-icon collapse-icon',
-              isCollapsed ? 'rotate-icon' : ''
-            ]"
-            type="md-menu"
-            size="24"
-          ></Icon>
-          <Breadcrumb class="breadcrumb">
-            <BreadcrumbItem to="/">
-              <Icon type="ios-home"></Icon> 首页
-            </BreadcrumbItem>
-            <BreadcrumbItem
-              v-for="crumb in crumbList"
-              :key="crumb.to"
-              :to="crumb.to"
-            >
-              <Icon :type="crumb.icon"></Icon>{{ crumb.name }}
-            </BreadcrumbItem>
-          </Breadcrumb>
+          <MenuTrigger
+            :height="headerHeight"
+            v-model="isCollapsed"
+          ></MenuTrigger>
         </Header>
         <Content class="layout-main">
+          {{ isCollapsed }}
           <router-view></router-view>
         </Content>
       </Layout>
@@ -88,50 +31,31 @@
 </template>
 
 <script>
-import Welcome from './components/Welcome.vue';
 import './theme/app.less';
-
-import menu from './mock/menu';
-import Routers from './route/routers';
+import Logo from './components/Logo.vue';
+import MenuTrigger from './components/MenuTrigger.vue';
 export default {
   name: 'app',
-  components: {
-    Welcome
-  },
+  components: { Logo, MenuTrigger },
   data() {
     return {
       isCollapsed: false,
-      menu: [],
-      theme: 'dark', // 菜单主题，可选值为 light、dark、primary，其中 primary 只适用于 mode="horizontal",
-      defaultMenuIcon: 'ios-apps'
+      headerHeight: '64px',
+
+      menuWidth: 180, // 左侧菜单正常宽度
+      menuCollapsedWidth: 75 // 左侧菜单收起宽度
     };
   },
   computed: {
     isLoginPage() {
       return this.$route.name == 'login';
-    },
-    routerName() {
-      return this.$route.name;
-    },
-    crumbList() {
-      return this.$lodash.getCrumbList(this.routerName, this.menu, Routers);
     }
   },
-  mounted() {
-    setTimeout(() => {
-      this.menu = menu;
-    }, 800);
-  },
+  mounted() {},
   watch: {},
   methods: {
     collapsedSider() {
       this.$refs['menuSider'].toggleCollapse();
-    },
-
-    menuSelect(name) {
-      if (name != this.routerName) {
-        this.$router.push({ name });
-      }
     }
   }
 };
@@ -144,6 +68,15 @@ export default {
   border-radius: 4px;
   overflow: hidden;
 }
+.ivu-layout-header {
+  padding: 0;
+}
+/************ LAYOUT-MAIN ************/
+.layout-main {
+  margin: 20px;
+  background: #fff;
+  min-height: 260px;
+}
 /************ LOGO ************/
 .layout-logo {
   width: 100%;
@@ -152,67 +85,5 @@ export default {
   background: #ccc;
   text-align: center;
   color: #000;
-}
-/************ MENU ************/
-.menu-list .menu-name {
-  display: inline-block;
-  overflow: hidden;
-  width: 90px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: bottom;
-  transition: width 0.2s ease 0.2s;
-}
-.menu-list i {
-  transform: translateX(0px);
-  transition: font-size 0.2s ease, transform 0.2s ease;
-  vertical-align: middle;
-  font-size: 16px;
-}
-.collapsed-menu .menu-name {
-  width: 0px;
-  transition: width 0.2s ease;
-}
-.collapsed-menu i {
-  transform: translateX(5px);
-  transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
-  vertical-align: middle;
-  font-size: 22px;
-}
-.collapse-icon {
-  margin: 0 20px;
-  cursor: pointer;
-}
-/************ HEADER-BAR ************/
-.layout-header-bar {
-  background: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  padding: 0;
-  .header-menu-icon {
-    transition: all 0.3s;
-  }
-  .rotate-icon {
-    transform: rotate(-90deg);
-  }
-}
-/************ BREADCRUMB ************/
-.breadcrumb {
-  display: inline-block;
-}
-/************ LAYOUT-MAIN ************/
-.layout-main {
-  margin: 20px;
-  background: #fff;
-  min-height: 260px;
-}
-</style>
-
-<style>
-/* **************************** Collapsed Menu **************************** */
-.collapsed-menu .sub-mneu .ivu-menu {
-  display: none;
-}
-.collapsed-menu .sub-mneu .ivu-menu-submenu-title-icon {
-  display: none;
 }
 </style>
