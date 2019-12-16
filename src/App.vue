@@ -13,6 +13,7 @@
         v-model="isCollapsed"
       >
         <Logo :height="headerHeight"></Logo>
+        <SiderMenu></SiderMenu>
       </Sider>
       <Layout>
         <Header class="layout-header-bar">
@@ -34,9 +35,10 @@
 import './theme/app.less';
 import Logo from './components/Logo.vue';
 import MenuTrigger from './components/MenuTrigger.vue';
+import SiderMenu from './components/SiderMenu.vue';
 export default {
   name: 'app',
-  components: { Logo, MenuTrigger },
+  components: { Logo, MenuTrigger, SiderMenu },
   data() {
     return {
       isCollapsed: false,
