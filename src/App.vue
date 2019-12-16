@@ -13,7 +13,7 @@
         v-model="isCollapsed"
       >
         <Logo :height="headerHeight"></Logo>
-        <SiderMenu></SiderMenu>
+        <SiderMenu :isCollapsed="isCollapsed" :list="menuList"></SiderMenu>
       </Sider>
       <Layout>
         <Header class="layout-header-bar">
@@ -35,17 +35,19 @@
 import './theme/app.less';
 import Logo from './components/Logo.vue';
 import MenuTrigger from './components/MenuTrigger.vue';
-import SiderMenu from './components/SiderMenu.vue';
+import SiderMenu from './components/Menu';
+import mockedMenuList from './mock/menu';
 export default {
   name: 'app',
   components: { Logo, MenuTrigger, SiderMenu },
   data() {
     return {
-      isCollapsed: false,
+      isCollapsed: true,
       headerHeight: '64px',
 
       menuWidth: 180, // 左侧菜单正常宽度
-      menuCollapsedWidth: 75 // 左侧菜单收起宽度
+      menuCollapsedWidth: 75, // 左侧菜单收起宽度
+      menuList: []
     };
   },
   computed: {
@@ -53,7 +55,12 @@ export default {
       return this.$route.name == 'login';
     }
   },
-  mounted() {},
+  mounted() {
+    // TODO:
+    setTimeout(() => {
+      this.menuList = mockedMenuList;
+    }, 500);
+  },
   watch: {},
   methods: {
     collapsedSider() {

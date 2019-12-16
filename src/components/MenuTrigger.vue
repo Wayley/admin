@@ -15,8 +15,14 @@ export default {
   name: 'app',
   components: {},
   props: {
-    value: Boolean,
-    height: String
+    value: {
+      type: Boolean,
+      default: false
+    },
+    height: {
+      type: String,
+      default: '64px'
+    }
   },
   data() {
     return {
