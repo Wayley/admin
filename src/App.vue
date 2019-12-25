@@ -57,6 +57,9 @@ export default {
   },
   mounted() {
     // TODO:
+    this.$apis.getUserDetail({ id: 11 });
+    this.$apis.login();
+
     setTimeout(() => {
       this.menuList = mockedMenuList;
     }, 500);
