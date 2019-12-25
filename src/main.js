@@ -49,6 +49,10 @@ Vue.use(Lodash);
 /* ********************** Vue I18n ********************** */
 import i18n from './locale';
 
+/* ********************** Axios ********************** */
+import $apis from './http/index';
+Vue.use($apis);
+
 Vue.config.productionTip = false;
 
 new Vue({
